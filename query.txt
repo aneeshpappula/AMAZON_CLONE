@@ -1,0 +1,15 @@
+>select emp.employee_id,emp.first_name,emp.last_name from hr.employees emp
+inner join hr.departments dept on dept.department_id = emp.department_id inner join hr.locations loc 
+on loc.location_id = dept.location_id where loc.city='Seattle';
+
+>select emp.employee_id,emp.first_name,emp.last_name from hr.employees emp
+inner join hr.departments dept on dept.department_id = emp.department_id inner join hr.locations loc 
+on loc.location_id = dept.location_id where loc.city='Seattle' and emp.last_name='king';
+
+>select emp.employee_id,emp.first_name,emp.last_name from hr.employees emp
+inner join hr.departments dept on dept.department_id = emp.department_id inner join hr.locations loc 
+on loc.location_id = dept.location_id where emp.employee_id=100 or dept.department_id=100;
+
+>select emp.employee_id,emp.first_name,emp.last_name from hr.employees emp
+inner join hr.departments dept on dept.department_id = emp.department_id inner join hr.locations loc 
+on loc.location_id = dept.location_id where emp.employee_id=100 and dept.department_id=100;

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="new.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel and Tourism Website</title>
+    <style>
+        
+        body {
+            font-family: saffron, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #444;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Add more CSS styles for your content, images, and other elements here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Travel and Tourism</h1>
+        <p>Your Adventure Awaits!</p>
+    </header>
+    
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Destinations</a>
+        <a href="#">Tours</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      
+    </nav>
+
+    <div class="container">
+        <!-- Your website content goes here -->
+        <h2>Discover Amazing Destinations</h2>
+        <p>India is a diverse and culturally rich country with a wide range of amazing destinations to explore. Here are some top destinations in India that offer unique experiences</p>
+       <p>The United States is a vast and diverse country with a wide range of amazing destinations to explore. Here are some top destinations in the United States that offer unique experiences</p>
+        <p>Explore breathtaking locations around the world with our guided tours.</p>
+    <h1>Currency Converter</h1>
+    <label for="amount">Enter Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount" />
+    <br><br>
+    <label for="from">From Currency:</label>
+    <select id="from">
+        <!-- Add currency options here -->
+    </select>
+    <br><br>
+    <label for="to">To Currency:</label>
+    <select id="to">
+        <!-- Add currency options here -->
+    </select>
+    <br><br>
+    <button onclick="convertCurrency()">Convert</button>
+    <br><br>
+    <h2>Result:</h2>
+    <div id="result"></div>
+
+    <script>
+        // Function to fetch exchange rates from an API
+        function getExchangeRates() {
+            // Replace 'YOUR_API_KEY' with a valid API key
+            const apiKey = 'YOUR_API_KEY';
+            const url = https://api.apilayer.com/exchangerates_data/latest?apikey=${apiKey};
+
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => data.rates)
+                .catch(error => console.error(error));
+        }
+
+        // Populate currency dropdowns with options
+        function populateCurrencies(rates) {
+            const fromCurrencySelect = document.getElementById('from');
+            const toCurrencySelect = document.getElementById('to');
+
+            for (const currency in rates) {
+                const option1 = document.createElement('option');
+                option1.value = currency;
+                option1.text = currency;
+                fromCurrencySelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = currency;
+                option2.text = currency;
+                toCurrencySelect.appendChild(option2);
+            }
+        }
+
+        // Convert currency and display result
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('from').value;
+            const toCurrency = document.getElementById('to').value;
+
+            getExchangeRates()
+                .then(rates => {
+                    const conversionRate = rates[toCurrency] / rates[fromCurrency];
+                    const result = (amount * conversionRate).toFixed(2);
+
+                    document.getElementById('result').textContent = ${amount} ${fromCurrency} = ${result} ${toCurrency};
+                });
+        }
+
+        // Populate currency dropdowns on page load
+        getExchangeRates().then(populateCurrencies);
+    </script>
+        <h2>Our Featured Tours</h2>
+        <div class="tour-card">
+            <img src="tour1.jpg" alt="Tour 1">
+            <h3>Tour Name 1</h3>
+            <p>Explore the wonders of Tour Destination 1.</p>
+            <a href="#">Learn More</a>
+        </div>
+
+        <div class="tour-card">
+            <img src="tour2.jpg" alt="Tour 2">
+            <h3>Tour Name 2</h3>
+            <p>Discover the beauty of Tour Destination 2.</p>
+            <a href="#">Learn More</a>
+        </div>
+        
+        <!-- Add more tour cards as needed -->
+
+        <h2>About Us</h2>
+        <h2>Contact Us</h2>
+        <p>@destinationgmail.com</p>
+        <p>040-123456789</p>
+    </div>
+</body>
+</html>
